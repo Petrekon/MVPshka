@@ -1,13 +1,14 @@
 extends CharacterBody2D
 
-
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-@onready var playerImg = get_node("player_model")
+@onready var anim: AnimatedSprite2D = $player_model as AnimatedSprite2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func _ready() -> void:
+	anim.play("idle")
 
 func _physics_process(delta):
 	var collision = move_and_collide(velocity * delta)
@@ -24,17 +25,26 @@ func _physics_process(delta):
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-	if velocity.x<0:
-		$player_model.play("walkin")
-		playerImg.flip_h=true
-	elif velocity.x>0:
-		$player_model.play("walkin")
-		playerImg.flip_h=false
-	elif velocity.x==0:
-		$player_model.play("idle")
-		
-	if is_on_wall():
-		$player_model.play("idle")
-		
 	
+	change_anim()
 	move_and_slide()
+
+func change_anim():
+	if velocity.x>0:
+		anim.flip_h = false
+	elif velocity.x<0:
+		anim.flip_h = true
+	if velocity.x == 0:
+		anim.play("idle")
+	else:
+		anim.play("walkin")
+	if is_on_wall():
+		anim.play("idle")
+
+
+func _on_player_area_area_entered(area: Area2D) -> void:
+	if area.has_method("mirror"):
+		$dialogue.show()
+		$dialogue.update_message("Зеркало")
+		await get_tree().create_timer(1.0).timeout
+		$dialogue.hide()

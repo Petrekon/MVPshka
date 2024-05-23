@@ -1,0 +1,200 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5cju4s3svuje"]
+
+[ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_2m808"]
+[ext_resource type="Texture2D" uid="uid://dji8x5aups8yn" path="res://main_menu/menu_sprites/Main_menu_pic2.png" id="2_t10b3"]
+
+[node name="Menu" type="CanvasLayer"]
+script = ExtResource("1_2m808")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_t10b3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 68.0
+offset_top = 420.0
+offset_right = 588.0
+offset_bottom = 725.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 0
+offset_right = 310.0
+offset_bottom = 300.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="new_game_btn" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = ">новая_игра_"
+flat = true
+alignment = 0
+text_direction = 1
+
+[node name="continue_btn" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = ">продолжить_"
+flat = true
+alignment = 0
+text_direction = 1
+
+[node name="options_btn" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = ">настройки_"
+flat = true
+alignment = 0
+text_direction = 1
+
+[node name="exit_btn" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = ">выйти_из_игры_"
+flat = true
+alignment = 0
+text_direction = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
+process_mode = 3
+layout_mode = 2
+offset_left = 5.0
+offset_top = 215.0
+offset_right = 315.0
+offset_bottom = 265.0
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "_"
+scroll_active = false
+tab_size = 5
+shortcut_keys_enabled = false
+
+[node name="Timer" type="Timer" parent="ColorRect"]
+wait_time = 0.1
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 184.0
+offset_top = 560.0
+offset_right = 600.0
+offset_bottom = 664.0
+size_flags_horizontal = 4
+color = Color(0, 0, 0, 0.666667)
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.5
+offset_top = -50.0
+offset_right = 181.5
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="ColorRect2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "точно выйти?"
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="yes_btn" type="Button" parent="ColorRect2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_focus_color = Color(0, 0.470588, 0, 0.588235)
+theme_override_font_sizes/font_size = 30
+text = " Я УВЕРЕН "
+
+[node name="no_btn" type="Button" parent="ColorRect2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_focus_color = Color(0.470588, 0, 0, 0.588235)
+theme_override_font_sizes/font_size = 30
+text = "ПЕРЕДУМАЛ"
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 192.0
+offset_top = 448.0
+offset_right = 608.0
+offset_bottom = 560.0
+size_flags_horizontal = 4
+color = Color(0, 0, 0, 0.666667)
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.5
+offset_top = -50.0
+offset_right = 181.5
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="ColorRect3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Начать новую игру?"
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect3/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="agree_btn" type="Button" parent="ColorRect3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_focus_color = Color(0, 0.470588, 0, 0.588235)
+theme_override_font_sizes/font_size = 30
+text = " ПОЕХАЛИ "
+
+[node name="disagree_btn" type="Button" parent="ColorRect3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_focus_color = Color(0.470588, 0, 0, 0.588235)
+theme_override_font_sizes/font_size = 30
+text = "ТАК, СТОП"
+
+[connection signal="mouse_entered" from="ColorRect/MarginContainer/VBoxContainer/new_game_btn" to="." method="_on_new_game_btn_mouse_entered"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/new_game_btn" to="." method="_on_new_game_btn_pressed"]
+[connection signal="mouse_entered" from="ColorRect/MarginContainer/VBoxContainer/continue_btn" to="." method="_on_continue_btn_mouse_entered"]
+[connection signal="mouse_entered" from="ColorRect/MarginContainer/VBoxContainer/options_btn" to="." method="_on_options_btn_mouse_entered"]
+[connection signal="mouse_entered" from="ColorRect/MarginContainer/VBoxContainer/exit_btn" to="." method="_on_exit_btn_mouse_entered"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/exit_btn" to="." method="_on_exit_btn_pressed"]
+[connection signal="timeout" from="ColorRect/Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="ColorRect2/VBoxContainer/HBoxContainer/yes_btn" to="." method="_on_yes_btn_pressed"]
+[connection signal="pressed" from="ColorRect2/VBoxContainer/HBoxContainer/no_btn" to="." method="_on_no_btn_pressed"]
+[connection signal="pressed" from="ColorRect3/VBoxContainer/HBoxContainer/agree_btn" to="." method="_on_agree_btn_pressed"]
+[connection signal="pressed" from="ColorRect3/VBoxContainer/HBoxContainer/disagree_btn" to="." method="_on_disagree_btn_pressed"]

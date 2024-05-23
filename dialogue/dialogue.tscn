@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqg7873uogtmt"]
+
+[ext_resource type="Script" path="res://dialogue/dialogue.gd" id="1_ty3lt"]
+
+[node name="dialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ty3lt")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 128.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="text" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Ля-ля-ля"
+fit_content = true
+scroll_active = false
+tab_size = 5
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dm0oyx1yhepfn"]
+[gd_scene load_steps=3 format=3 uid="uid://dm0oyx1yhepfn"]
 
 [ext_resource type="Texture2D" uid="uid://di1foqao1erfn" path="res://sprites/lockations/room1/room.002.png" id="1_qhsff"]
-[ext_resource type="PackedScene" uid="uid://cwjv6h6ioki3q" path="res://player_1.tscn" id="2_23go6"]
 [ext_resource type="Texture2D" uid="uid://c8r14vci007cg" path="res://sprites/lockations/room1/room11.png" id="2_nho2c"]
 
 [node name="room" type="StaticBody2D"]
@@ -9,22 +8,16 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="after_mirror" type="Sprite2D" parent="."]
+light_mask = 64
+visibility_layer = 64
 z_index = -2
 position = Vector2(0, -5)
 texture = ExtResource("1_qhsff")
 
-[node name="before_mirror" type="Sprite2D" parent="."]
+[node name="before_mirror" type="Sprite2D" parent="." groups=["midground_group"]]
+light_mask = 8
+visibility_layer = 8
 texture = ExtResource("2_nho2c")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(965, 550, -965, 550, -965, -550, -380, -550, -380, 505, 890, 505, 890, -550, 965, -550)
-
-[node name="player1" parent="." instance=ExtResource("2_23go6")]
-z_index = -1
-position = Vector2(150, -20)
-collision_layer = 7
-collision_mask = 7
-slide_on_ceiling = false
-wall_min_slide_angle = 0.0
-platform_on_leave = 2
-platform_floor_layers = 0
