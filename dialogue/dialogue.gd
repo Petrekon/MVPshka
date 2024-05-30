@@ -1,9 +1,18 @@
 extends Control
 
-@export_file("*.json") var d_file
+@export_file("*.json") var file1
+@export_file("*.json") var file2
+@export_file("*.json") var file3
+@export_file("*.json") var file4
+@export_file("*.json") var file5
+@export_enum("with_self","with_anybody") var d_type : String
+@export var sequence : int = 1
+@export var speakers_number : int = 1
+
 @onready var content := $ColorRect/text as RichTextLabel
 @onready var type_timer := $Timer as Timer
 @onready var num_chat = 1
+@onready var d_file
 
 var dialogue = []
 var current_dialogue_id = 0
@@ -16,21 +25,38 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	json_changer()
-	if Input.is_action_just_pressed("talk"):
+	if Input.is_action_just_pressed("talk") and is_valid_d_type():
 		match d_file:
 			null: pass
 			_: start_dialogue()
+
+func is_valid_d_type():
+	match d_active:
+		true: 
+			return false
+		false:
+			match d_type:
+				"with_anybody":
+					match GlobalVariables.can_chat:
+						true: return true
+						false: return false
+				"with_self":
+					return true
 			
 func json_changer():
-	if get_tree().current_scene.name == "scene1":
-		match num_chat:
-			1:
-				d_file = "res://dialogue/chats/playerchat1.json"
-			2:
-				d_file = "res://dialogue/chats/playerchat2.json"
-			_: 
-				d_file = null
-	
+	match num_chat:
+		1:
+			d_file = file1
+		2:
+			d_file = file2
+		3: 
+			d_file = file3
+		4:
+			d_file = file4
+		5:
+			d_file = file5
+		_:
+			d_file = null
 	
 func load_dialogue():
 	var file = FileAccess.open(d_file, FileAccess.READ)
@@ -38,7 +64,17 @@ func load_dialogue():
 	return dialogue_content
 	
 func next_string():
-	current_dialogue_id += 1
+	match sequence:
+		1:
+			if current_dialogue_id<0:
+				current_dialogue_id += 1
+			elif current_dialogue_id>=0:
+				current_dialogue_id += 1 * speakers_number
+		2: 
+			if current_dialogue_id==0:
+				current_dialogue_id += 1
+			elif current_dialogue_id>0:
+				current_dialogue_id += 1 * speakers_number
 	if current_dialogue_id >= len(dialogue):
 		d_active = false
 		$".".hide()
@@ -63,7 +99,11 @@ func start_dialogue():
 	d_active = true
 	$".".show()
 	dialogue = load_dialogue()
-	current_dialogue_id = -1
+	match  sequence:
+		1:
+			current_dialogue_id = -1
+		2:
+			current_dialogue_id = 0
 	next_string()
 	
 func _input(event: InputEvent) -> void:

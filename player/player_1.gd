@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 200.0
+var SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 @onready var anim: AnimatedSprite2D = $player_model as AnimatedSprite2D
 
@@ -9,6 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready() -> void:
 	anim.play("idle")
+	SPEED = SPEED * $".".scale.x
 
 func _physics_process(delta):
 	var collision = move_and_collide(velocity * delta)
@@ -48,3 +49,13 @@ func _on_player_area_area_entered(area: Area2D) -> void:
 		$dialogue.update_message("Зеркало")
 		await get_tree().create_timer(1.0).timeout
 		$dialogue.hide()
+	else:
+		GlobalVariables.can_chat = true
+		$dialogue.show()
+		$dialogue.update_message("Поговорить?")
+		await get_tree().create_timer(1.0).timeout
+		$dialogue.hide()
+
+
+func _on_player_area_area_exited(area: Area2D) -> void:
+	GlobalVariables.can_chat = false
