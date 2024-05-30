@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://exyldx5cwd8o"]
+
+[ext_resource type="PackedScene" uid="uid://12wfdbal6lk5" path="res://IIT_Outside1/iit_outside_1.tscn" id="1_r8uum"]
+[ext_resource type="PackedScene" uid="uid://cwjv6h6ioki3q" path="res://player/player_1.tscn" id="2_wa8r1"]
+[ext_resource type="PackedScene" uid="uid://dthhc4gnhh5y6" path="res://chars/zavkaf/zavkaf.tscn" id="3_c81xe"]
+
+[node name="Scene2" type="Node2D"]
+
+[node name="IIT_Outside1" parent="." instance=ExtResource("1_r8uum")]
+
+[node name="Zavkaf" parent="." instance=ExtResource("3_c81xe")]
+position = Vector2(728, 264)
+scale = Vector2(0.6, 0.6)
+
+[node name="player1" parent="." instance=ExtResource("2_wa8r1")]
+position = Vector2(-2528, 224)
+scale = Vector2(0.6, 0.6)
+
+[node name="Camera2D" type="Camera2D" parent="player1"]
+position = Vector2(0, -256)
+scale = Vector2(2, 2)
+limit_left = -3840
+limit_right = 3712
+limit_bottom = 540

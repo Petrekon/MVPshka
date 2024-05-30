@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://12wfdbal6lk5"]
+
+[ext_resource type="Texture2D" uid="uid://bvcfddfl3h3c8" path="res://sprites/lockations/IIT outside1/IIT_outside3.png" id="1_to1oq"]
+
+[node name="IIT_Outside1" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_to1oq")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(8, 416)
+scale = Vector2(1, 0.347973)
+polygon = PackedVector2Array(-3912, 481.678, 3696, 481.678, 3696, -1472.5, 3456, -1471.38, 3456, 275.883, -3832, 275.883, -3832, -1724.27, -3912, -1725.39)
