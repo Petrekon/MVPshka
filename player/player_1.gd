@@ -44,18 +44,7 @@ func change_anim():
 
 
 func _on_player_area_area_entered(area: Area2D) -> void:
-	if area.has_method("mirror"):
-		$dialogue.show()
-		$dialogue.update_message("Зеркало")
-		await get_tree().create_timer(1.0).timeout
-		$dialogue.hide()
-	else:
-		GlobalVariables.can_chat = true
-		$dialogue.show()
-		$dialogue.update_message("Поговорить?")
-		await get_tree().create_timer(1.0).timeout
-		$dialogue.hide()
-
+	GlobalVariables.can_chat = true
 
 func _on_player_area_area_exited(area: Area2D) -> void:
 	GlobalVariables.can_chat = false

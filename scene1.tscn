@@ -1,24 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://gxvrdm620riu"]
+[gd_scene load_steps=6 format=3 uid="uid://gxvrdm620riu"]
 
 [ext_resource type="PackedScene" uid="uid://dm0oyx1yhepfn" path="res://room1/room1.tscn" id="1_831er"]
 [ext_resource type="PackedScene" uid="uid://cwjv6h6ioki3q" path="res://player/player_1.tscn" id="2_py3nx"]
-[ext_resource type="PackedScene" uid="uid://cqg7873uogtmt" path="res://dialogue/dialogue.tscn" id="3_hgxhv"]
 [ext_resource type="PackedScene" uid="uid://n33xpqoofc2m" path="res://mirror/mirror.tscn" id="3_mi8qd"]
+[ext_resource type="PackedScene" uid="uid://cthpf3vpkit8f" path="res://door/door.tscn" id="5_ksei2"]
+[ext_resource type="PackedScene" uid="uid://dwj6a111hbuey" path="res://zones/interaction_zone/interaction_zone.tscn" id="5_m17ae"]
 
 [node name="scene1" type="Node2D"]
 
 [node name="room" parent="." instance=ExtResource("1_831er")]
 
 [node name="player1" parent="." instance=ExtResource("2_py3nx")]
-position = Vector2(0, 27)
-
-[node name="dialogue2" parent="player1" instance=ExtResource("3_hgxhv")]
-offset_left = -248.0
-offset_top = -320.0
-offset_right = -248.0
-offset_bottom = -320.0
-file1 = "res://dialogue/chats/scene1_chats/playerchat1.json"
-file2 = "res://dialogue/chats/scene1_chats/playerchat2.json"
+position = Vector2(-296, 27)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -36,7 +29,20 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Mirror" parent="." instance=ExtResource("3_mi8qd")]
 position = Vector2(323, 58)
-scale = Vector2(16, 36)
+scale = Vector2(1.76, 2.0736)
 
 [node name="Camera2D2" type="Camera2D" parent="."]
 zoom = Vector2(0.75, 0.75)
+
+[node name="Door" parent="." instance=ExtResource("5_ksei2")]
+position = Vector2(680, 40)
+scale = Vector2(1.4025, 2.22)
+level_to_change = "res://scene_2.tscn"
+
+[node name="interaction_zone" parent="." instance=ExtResource("5_m17ae")]
+position = Vector2(-24, 240)
+scale = Vector2(1.26, 1.1)
+file1 = "res://dialogue/chats/scene1_chats/memes_chats/mem_chat1.json"
+file2 = "res://dialogue/chats/scene1_chats/memes_chats/mem_chat2.json"
+action_name = "собраться с мыслями"
+action_type = "with_self"

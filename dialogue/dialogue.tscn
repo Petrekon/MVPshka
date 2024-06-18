@@ -11,7 +11,7 @@ script = ExtResource("1_ty3lt")
 layout_mode = 0
 offset_right = 512.0
 offset_bottom = 128.0
-color = Color(0, 0, 0, 0.588235)
+color = Color(0, 0, 0, 0)
 
 [node name="text" type="RichTextLabel" parent="ColorRect"]
 layout_mode = 1
@@ -20,6 +20,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 3
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "Ля-ля-ля"

@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://12wfdbal6lk5" path="res://IIT_Outside1/iit_outside_1.tscn" id="1_r8uum"]
 [ext_resource type="PackedScene" uid="uid://cwjv6h6ioki3q" path="res://player/player_1.tscn" id="2_wa8r1"]
-[ext_resource type="PackedScene" uid="uid://cqg7873uogtmt" path="res://dialogue/dialogue.tscn" id="3_75sch"]
 [ext_resource type="PackedScene" uid="uid://dthhc4gnhh5y6" path="res://chars/zavkaf/zavkaf.tscn" id="3_c81xe"]
+[ext_resource type="PackedScene" uid="uid://dwj6a111hbuey" path="res://zones/interaction_zone/interaction_zone.tscn" id="5_q3v3v"]
 
-[node name="Scene2" type="Node2D"]
+[node name="scene2" type="Node2D"]
 
 [node name="IIT_Outside1" parent="." instance=ExtResource("1_r8uum")]
 
@@ -13,17 +13,17 @@
 position = Vector2(728, 280)
 scale = Vector2(0.6, 0.6)
 
-[node name="dialogue" parent="Zavkaf" instance=ExtResource("3_75sch")]
-offset_left = -213.333
-offset_top = -546.667
-offset_right = -213.333
-offset_bottom = -546.667
-file1 = "res://dialogue/chats/scene2_chats/zavkafchat1.json"
-d_type = "with_anybody"
-speakers_number = 2
+[node name="interaction_zone2" parent="Zavkaf" instance=ExtResource("5_q3v3v")]
+position = Vector2(13.3334, 0)
+scale = Vector2(2.73333, 2.33333)
+file1 = "res://dialogue/chats/scene2_chats/zavkaf_chats/zavkafchat1.json"
+file2 = "res://dialogue/chats/scene2_chats/zavkaf_chats/zavkafchat2.json"
+file3 = "res://dialogue/chats/scene2_chats/zavkaf_chats/zavkafchat3.json"
+action_name = "Павел Павлович"
+action_type = "with_anybody"
 
 [node name="player1" parent="." instance=ExtResource("2_wa8r1")]
-position = Vector2(96, 200)
+position = Vector2(-2888, 216)
 scale = Vector2(0.6, 0.6)
 
 [node name="Camera2D" type="Camera2D" parent="player1"]
@@ -32,13 +32,36 @@ scale = Vector2(2, 2)
 limit_left = -3840
 limit_right = 3712
 limit_bottom = 540
+position_smoothing_speed = 10.0
 
-[node name="dialogue2" parent="player1" instance=ExtResource("3_75sch")]
-offset_left = -266.667
-offset_top = -320.0
-offset_right = -266.667
-offset_bottom = -320.0
-file1 = "res://dialogue/chats/scene2_chats/zavkafchat1.json"
-d_type = "with_anybody"
-sequence = 2
-speakers_number = 2
+[node name="interaction_zone" parent="." instance=ExtResource("5_q3v3v")]
+position = Vector2(-3208, 320)
+scale = Vector2(0.68, 0.52)
+file1 = "res://dialogue/chats/scene2_chats/trashcan_chats/trashcan_chat1.json"
+file2 = "res://dialogue/chats/scene2_chats/trashcan_chats/trashcan_chat2.json"
+action_name = "мусорка"
+action_type = "with_self"
+
+[node name="interaction_zone2" parent="." instance=ExtResource("5_q3v3v")]
+position = Vector2(-3440, 336)
+scale = Vector2(1.2, 0.400001)
+file1 = "res://dialogue/chats/scene2_chats/bench_chats/bench_chat1.json"
+file2 = "res://dialogue/chats/scene2_chats/bench_chats/bench_chat2.json"
+action_name = "скамейка"
+action_type = "with_self"
+
+[node name="interaction_zone3" parent="." instance=ExtResource("5_q3v3v")]
+position = Vector2(-3752, 376)
+scale = Vector2(0.68, 0.320001)
+file1 = "res://dialogue/chats/scene2_chats/another_bench_chats/another_bench_chat.json"
+action_name = "ещё одна скамейка"
+action_type = "with_self"
+
+[node name="interaction_zone4" parent="." instance=ExtResource("5_q3v3v")]
+position = Vector2(2576, 168)
+scale = Vector2(3.68, 1)
+file1 = "res://dialogue/chats/scene2_chats/IIT_chats/IIT_chat1.json"
+file2 = "res://dialogue/chats/scene2_chats/IIT_chats/IIT_chat2.json"
+file3 = "res://dialogue/chats/scene2_chats/IIT_chats/IIT_chat3.json"
+action_name = "ИИТ"
+action_type = "with_self"

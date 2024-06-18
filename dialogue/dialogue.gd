@@ -9,6 +9,7 @@ extends Control
 @export var sequence : int = 1
 @export var speakers_number : int = 1
 
+
 @onready var content := $ColorRect/text as RichTextLabel
 @onready var type_timer := $Timer as Timer
 @onready var num_chat = 1
@@ -27,7 +28,7 @@ func _process(delta: float) -> void:
 	json_changer()
 	if Input.is_action_just_pressed("talk") and is_valid_d_type():
 		match d_file:
-			null: pass
+			null: d_file_holder()
 			_: start_dialogue()
 
 func is_valid_d_type():
@@ -42,6 +43,10 @@ func is_valid_d_type():
 						false: return false
 				"with_self":
 					return true
+
+func d_file_holder():
+	await Input.is_action_just_pressed("talk")
+	num_chat+=1
 			
 func json_changer():
 	match num_chat:
@@ -57,7 +62,7 @@ func json_changer():
 			d_file = file5
 		_:
 			d_file = null
-	
+				
 func load_dialogue():
 	var file = FileAccess.open(d_file, FileAccess.READ)
 	var dialogue_content = JSON.parse_string(file.get_as_text())

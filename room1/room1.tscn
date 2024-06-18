@@ -14,7 +14,7 @@ z_index = -2
 position = Vector2(0, -5)
 texture = ExtResource("1_qhsff")
 
-[node name="before_mirror" type="Sprite2D" parent="." groups=["midground_group"]]
+[node name="before_mirror" type="Sprite2D" parent="." groups=["midground_group", "reflectionable"]]
 light_mask = 8
 visibility_layer = 8
 texture = ExtResource("2_nho2c")

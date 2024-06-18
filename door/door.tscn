@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cthpf3vpkit8f"]
+
+[ext_resource type="Script" path="res://door/Door.gd" id="1_w4syk"]
+[ext_resource type="PackedScene" uid="uid://dwj6a111hbuey" path="res://zones/interaction_zone/interaction_zone.tscn" id="2_vqfp2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cus5e"]
+size = Vector2(70, 64)
+
+[node name="Door" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_w4syk")
+level_to_change = "<null>"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.7, 5)
+shape = SubResource("RectangleShape2D_cus5e")
+
+[node name="interaction_zone" parent="." instance=ExtResource("2_vqfp2")]
+file1 = "res://dialogue/chats/doors_chats/door_chat1.json"
+file2 = "res://dialogue/chats/doors_chats/door_chat2.json"
+file3 = "res://dialogue/chats/doors_chats/door_chat3.json"
+action_name = "Дверь"
+action_type = "with_self"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

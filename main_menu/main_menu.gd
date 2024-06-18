@@ -1,58 +1,69 @@
 extends CanvasLayer
 
-@onready var content := $ColorRect/RichTextLabel as RichTextLabel
-@onready var type_timer := $ColorRect/Timer as Timer
+@onready var content := $MainRect/RichTextLabel as RichTextLabel
+@onready var type_timer := $MainRect/Timer as Timer
 
 func _ready() -> void:
-	$ColorRect2.hide()
-	$ColorRect3.hide()
+	$ExitRect.hide()
+	$NewGameRect.hide()
+	$InProgressRect.hide()
+	$OptionsRect.hide()
+	$OptionsRect/MarginContainer/HBoxContainer/VBoxContainer2/Label2/HScrollBar.value = MasterAudio.volume_db
 	get_tree().paused=false
 	laughter()
 	
+	
 func laughter():
 	await get_tree().create_timer(5.0).timeout
-	update_message("[shake rate=20.0 level=5 connected=1][color=Red]ХА_ХА_ХА[/color][/shake]")
-	
+	GlobalFunctions.type_text(content,"[shake rate=20.0 level=5 connected=1][color=Red]ХА_ХА_ХА[/color][/shake]",0.1)
 	
 #реакции на клики
 func _on_new_game_btn_pressed() -> void:
-	$ColorRect3.show()
-	$ColorRect2.hide()
+	$NewGameRect.show()
+	$ExitRect.hide()
+	$InProgressRect.hide()
 func _on_exit_btn_pressed() -> void:
-	$ColorRect2.show()
-	$ColorRect3.hide()
+	$ExitRect.show()
+	$NewGameRect.hide()
+	$InProgressRect.hide()
 func _on_yes_btn_pressed() -> void:
 	get_tree().quit()
 func _on_no_btn_pressed() -> void:
-	$ColorRect2.hide()
+	$ExitRect.hide()
 func _on_agree_btn_pressed() -> void:
 	get_tree().change_scene_to_file("res://scene1.tscn")
+	GlobalFunctions.scene_changed
 func _on_disagree_btn_pressed() -> void:
-	$ColorRect3.hide()
+	$NewGameRect.hide()
+func _on_options_btn_pressed() -> void:
+	$OptionsRect.show()
+	$NewGameRect.hide()
+	$ExitRect.hide()
+func _on_continue_btn_pressed() -> void:
+	$InProgressRect.show()
+	$NewGameRect.hide()
+	$ExitRect.hide()
+func _on_ok_btn_pressed() -> void:
+	$InProgressRect.hide()
 	
 #реакции на курсор
 func _on_new_game_btn_mouse_entered() -> void:
-	update_message("новая_игра|")
+	GlobalFunctions.type_text(content,"новая_игра|",0.1)
 func _on_continue_btn_mouse_entered() -> void:
-	update_message("продолжить|")
+	GlobalFunctions.type_text(content,"продолжить|",0.1)
 func _on_options_btn_mouse_entered() -> void:
-	update_message("настройки|")
+	GlobalFunctions.type_text(content,"настройки|",0.1)
 func _on_exit_btn_mouse_entered() -> void:
-	update_message("выйти_из_игры|")
+	GlobalFunctions.type_text(content,"выйти_из_игры|",0.1)
 
-#функции для обновление текста
-func update_message(message: String) -> void:
-	content.bbcode_text = message
-	content.visible_characters = 0
-	type_timer.start()
+func _on_ok_settings_btn_pressed() -> void:
+	$OptionsRect.hide() # Replace with function body.
 
-func _on_timer_timeout() -> void:
-	if content.visible_characters < content.get_total_character_count():
-		content.visible_characters += 1
+func _on_screen_changer_item_selected(index: int) -> void:
+	if index == 0:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
-		type_timer.stop()
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
-
-
-
-
+func _on_h_scroll_bar_value_changed(value: float) -> void:
+	MasterAudio.volume_db = value

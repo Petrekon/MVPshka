@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5whbk2ka5l8r"]
+
+[ext_resource type="Script" path="res://dialogue/alternative_dialogue.gd" id="1_2cf2e"]
+
+[node name="AlternativeDialogue" type="MarginContainer"]
+offset_right = 20.0
+offset_bottom = 62.0
+script = ExtResource("1_2cf2e")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0, 0, 0, 0.588235)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="LetterDisplayTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="LetterDisplayTimer" to="." method="_on_letter_display_timer_timeout"]

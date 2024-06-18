@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://n33xpqoofc2m"]
+[gd_scene load_steps=4 format=3 uid="uid://n33xpqoofc2m"]
 
 [ext_resource type="Script" path="res://mirror/Mirror.gd" id="1_fpbu5"]
+[ext_resource type="PackedScene" uid="uid://dwj6a111hbuey" path="res://zones/interaction_zone/interaction_zone.tscn" id="2_3d3a5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dms5n"]
 
@@ -8,7 +9,15 @@
 script = ExtResource("1_fpbu5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(9.5, 16.5)
 shape = SubResource("RectangleShape2D_dms5n")
+
+[node name="interaction_zone" parent="." instance=ExtResource("2_3d3a5")]
+file1 = "res://dialogue/chats/mirrors_chats/mirror_chat1.json"
+file2 = "res://dialogue/chats/mirrors_chats/mirror_chat2.json"
+file3 = "res://dialogue/chats/mirrors_chats/mirror_chat3.json"
+action_name = "Зеркало"
+action_type = "with_self"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

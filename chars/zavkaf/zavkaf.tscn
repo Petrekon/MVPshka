@@ -1,6 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dthhc4gnhh5y6"]
 
 [ext_resource type="Texture2D" uid="uid://pfgquokamql3" path="res://sprites/characters/Zavkaf/zavkaf_idle2.png" id="1_ayyam"]
+[ext_resource type="Script" path="res://chars/zavkaf/zavkaf.gd" id="1_ftmc0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a36l0"]
 atlas = ExtResource("1_ayyam")
@@ -48,12 +49,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ngw4"]
 size = Vector2(240, 768)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0r8en"]
-radius = 238.25
-height = 816.0
-
 [node name="Zavkaf" type="CharacterBody2D"]
 collision_layer = 8
+script = ExtResource("1_ftmc0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p8uby")
@@ -64,9 +62,3 @@ frame_progress = 0.610301
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(32, 0)
 shape = SubResource("RectangleShape2D_0ngw4")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -48)
-shape = SubResource("CapsuleShape2D_0r8en")
