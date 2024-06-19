@@ -9,6 +9,8 @@ func _ready() -> void:
 	$InProgressRect.hide()
 	$OptionsRect.hide()
 	$OptionsRect/MarginContainer/HBoxContainer/VBoxContainer2/Label2/HScrollBar.value = MasterAudio.volume_db
+	$OptionsRect/MarginContainer/HBoxContainer/VBoxContainer2/ScreenChanger.selected = GlobalVariables.screen_index
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().paused=false
 	laughter()
 	
@@ -64,6 +66,8 @@ func _on_screen_changer_item_selected(index: int) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	GlobalVariables.screen_index=index
+		
 
 func _on_h_scroll_bar_value_changed(value: float) -> void:
 	MasterAudio.volume_db = value

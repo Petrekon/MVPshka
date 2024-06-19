@@ -9,6 +9,8 @@ func _ready() -> void:
 	$ExitRect.hide()
 	$OptionsRect.hide()
 	$OptionsRect/MarginContainer/HBoxContainer/VBoxContainer2/Label2/HScrollBar.value = MasterAudio.volume_db
+	$OptionsRect/MarginContainer/HBoxContainer/VBoxContainer2/ScreenChanger.selected = GlobalVariables.screen_index
+	
 	var timer = get_tree().create_timer(1.0)
 	var signale = timer.timeout
 	await signale
@@ -18,10 +20,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("escape") and $".".visible == false:
 		$".".show()
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused = true
 	elif Input.is_action_just_pressed("escape") and $".".visible == true:
 		$".".hide()
 		$ExitRect.hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		get_tree().paused = false
 
 func update_message(message: String) -> void:
@@ -70,6 +74,7 @@ func _on_screen_changer_item_selected(index: int) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	GlobalVariables.screen_index=index
 
 func _on_h_scroll_bar_value_changed(value: float) -> void:
 	MasterAudio.volume_db=value
